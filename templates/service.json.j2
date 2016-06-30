@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "service": {
+    "Type": "AWS::ECS::Service",
+    "DependsOn": ["ECSAutoScalingGroup"],
+    "Properties" : {
+      "Cluster": {"Ref": "ECSCluster"},
+      "DesiredCount": "1",
+      "LoadBalancers": [
+        {
+          "ContainerName": "simple-app",
+          "ContainerPort": "80",
+          "LoadBalancerName" : { "Ref" : "EcsElasticLoadBalancer" }
+        }
+      ],
+      "Role" : {"Ref":"ECSServiceRole"},
+      "TaskDefinition" : {"Ref":"taskdefinition"}
+    }
+  }
+}

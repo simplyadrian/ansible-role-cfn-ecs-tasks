@@ -1,0 +1,20 @@
+---
+# tasks file for ansible-role-cfn-ecs-tasks
+- name: Create build directory
+  file:
+    dest: build
+    state: directory
+
+- name: Template role
+  template:
+    src: service.j2
+    dest: "build/service.json"
+
+- name: Create or remove role stack
+  cloudformation:
+    template: "build/service.json"
+    stack_name: "{{ ecs_tasks_stack_name }}"
+    state: "{{ ecs_tasks_stack_state|default('present') }}"
+    region: "{{ region|default('us-west-2') }}"
+    security_token: "{{ lookup('env','AWS_SESSION_TOKEN')|default(omit, true) }}"
+    tags: "{{ ecs_tasks_tags }}"
