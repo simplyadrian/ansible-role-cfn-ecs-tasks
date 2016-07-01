@@ -2,19 +2,18 @@
   "AWSTemplateFormatVersion" : "2010-09-09",
   "service": {
     "Type": "AWS::ECS::Service",
-    "DependsOn": ["ECSAutoScalingGroup"],
     "Properties" : {
-      "Cluster": {"Ref": "ECSCluster"},
-      "DesiredCount": "1",
+      "Cluster": "{{ ecs_cluster }}",
+      "DesiredCount": "{{ ecs_service_count }}",
       "LoadBalancers": [
         {
-          "ContainerName": "simple-app",
-          "ContainerPort": "80",
-          "LoadBalancerName" : { "Ref" : "EcsElasticLoadBalancer" }
+          "ContainerName": "{{ ecs_container_name }}",
+          "ContainerPort": "{{ ecs_container_port ",
+          "LoadBalancerName" : "{{ ecs_elastic_Load_balancer }}"
         }
       ],
-      "Role" : {"Ref":"ECSServiceRole"},
-      "TaskDefinition" : {"Ref":"taskdefinition"}
+      "Role" : "{{ ecs_service_role }}",
+      "TaskDefinition" : "{{ ecs_task_definition }}"
     }
   }
 }
