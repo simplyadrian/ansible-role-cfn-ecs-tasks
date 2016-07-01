@@ -4,11 +4,11 @@
     "Type": "AWS::ECS::Service",
     "Properties" : {
       "Cluster": "{{ ecs_cluster }}",
-      "DesiredCount": "{{ ecs_service_count }}",
+      "DesiredCount": "{{ ecs_service_count |default('1') }}",
       "LoadBalancers": [
         {
           "ContainerName": "{{ ecs_container_name }}",
-          "ContainerPort": "{{ ecs_container_port ",
+          "ContainerPort": "{{ ecs_container_port |default('80') }}",
           "LoadBalancerName" : "{{ ecs_elastic_Load_balancer }}"
         }
       ],
