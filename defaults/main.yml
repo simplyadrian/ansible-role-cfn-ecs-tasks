@@ -9,3 +9,4 @@ ecs_container_name: {}
 ecs_elastic_load_balancer: {}
 ecs_service_role: {}
 ecs_task_definition: {}
+service: true

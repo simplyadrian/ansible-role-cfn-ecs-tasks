@@ -1,0 +1,6 @@
+- src: https://github.com/mGageTechOps/ansible-role-cfn-ecs
+  version: master
+  name: ansible-role-cfn-ecs
+- src: https://github.com/mGageTechOps/ansible-role-module-cfn-lookup
+  version: master
+  name: ansible-role-module-cfn-lookup
