@@ -1,10 +1,11 @@
 ---
 # defaults file for ansible-role-cfn-ecs-tasks
 
-task_definiition_file: "{{ playbook_dir }}"
-ecs_tasks_stack_name: "test_stack"
-ecs_tasks_tags: {}
+task_definition_file: "{{ playbook_dir }}"
 ecs_cluster: {}
+ecs_tasks_stack_name: ""
+ecs_tasks_stack_state: ""
+ecs_tasks_tags: {}
 ecs_container_name: {}
 ecs_elastic_load_balancer: {}
 ecs_service_role: {}

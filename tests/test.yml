@@ -5,8 +5,6 @@
   vars:
     ecs_tasks_stack_name: "ansible-role-cfn-ecs-tasks-stack"
     assume_role_policy_document: "{{ lookup('file','consul-bootstrap-definition.json') }}"
-    ecs-tasks_tags:
-      Name: "ansible-role-cfn-ecs-tasks-stack-testing"
   
   pre_tasks:
     - name: Create ecs testing cluster

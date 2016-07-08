@@ -1,0 +1,7 @@
+*~
+.*.swp
+.DS_Store
+*.retry
+Dockerfile
+tests/Dockerfile*
+!tests/.keep
