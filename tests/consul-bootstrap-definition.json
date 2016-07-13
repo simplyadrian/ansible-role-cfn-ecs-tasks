@@ -1,59 +1,50 @@
 {
-    "containerDefinitions": [{
-        "essential": true,
-        "cpu": 20,
-        "memory": 128,
-        "image": "majest/docker-consul-ecs:latest",
-        "name": "consul-bootstrap",
-        "mountPoints": [{
-            "containerPath": "/data",
-            "sourceVolume": "consuldata",
-            "readOnly": false
+        "Essential": true,
+        "Cpu": 20,
+        "Memory": 128,
+        "Image": "majest/docker-consul-ecs:latest",
+        "Name": "consul-bootstrap",
+        "MountPoints": [{
+            "ContainerPath": "/data",
+            "SourceVolume": "consuldata",
+            "ReadOnly": false
         }],
-        "environment": [{
-            "name": "CONSUL_PARAMS",
-            "value": "-bootstrap"
+        "Environment": [{
+            "Name": "CONSUL_PARAMS",
+            "Value": "-bootstrap"
         }],
-        "portMappings": [{
-            "containerPort": 8300,
-            "hostPort": 8300,
-            "protocol": "tcp"
+        "PortMappings": [{
+            "ContainerPort": 8300,
+            "HostPort": 8300,
+            "Protocol": "tcp"
         }, {
-            "containerPort": 8301,
-            "hostPort": 8301,
-            "protocol": "tcp"
+            "ContainerPort": 8301,
+            "HostPort": 8301,
+            "Protocol": "tcp"
         }, {
-            "containerPort": 8301,
-            "hostPort": 8301,
-            "protocol": "udp"
+            "ContainerPort": 8301,
+            "HostPort": 8301,
+            "Protocol": "udp"
         }, {
-            "containerPort": 8302,
-            "hostPort": 8302,
-            "protocol": "tcp"
+            "ContainerPort": 8302,
+            "HostPort": 8302,
+            "Protocol": "tcp"
         }, {
-            "containerPort": 8400,
-            "hostPort": 8400,
-            "protocol": "tcp"
+            "ContainerPort": 8400,
+            "HostPort": 8400,
+            "Protocol": "tcp"
         }, {
-            "containerPort": 8500,
-            "hostPort": 8500,
-            "protocol": "tcp"
+            "ContainerPort": 8500,
+            "HostPort": 8500,
+            "Protocol": "tcp"
         }, {
-            "containerPort": 8600,
-            "hostPort": 53,
-            "protocol": "udp"
+            "ContainerPort": 8600,
+            "HostPort": 53,
+            "Protocol": "udp"
         }],
-        "dnsServers": [
+        "DnsServers": [
             "172.17.0.1",
             "8.8.8.8"
         ],
-        "dnsSearchDomains": ["service.consul"]
-    }],
-    "family": "consul-bootstrap",
-    "volumes": [{
-        "host": {
-            "sourcePath": "/opt/rtc/consul"
-        },
-        "name": "consuldata"
-    }]
+        "DnsSearchDomains": ["service.consul"]
 }
