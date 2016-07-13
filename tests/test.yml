@@ -3,19 +3,19 @@
   hosts: test
   remote_user: root
   vars:
-    ecs_tasks_stack_name: "ansible-role-cfn-ecs-tasks-stack"
-    ecs_tasks_container_definitions:
+    ecs_task_stack_name: "ansible-role-cfn-ecs-task-stack"
+    ecs_task_container_definitions:
       - "{{ lookup('file', 'consul-bootstrap-definition.json') }}"
-    ecs_tasks_volume_definitions:
+    ecs_task_volume_definitions:
       - "{{ lookup('file', 'consul-bootstrap-volume-definition.json') }}"
   roles:
-    - ansible-role-cfn-ecs-tasks
+    - ansible-role-cfn-ecs-task
 
 - name: test cleanup
   hosts: test
   remote_user: root
   vars:
-    ecs_tasks_stack_name: "ansible-role-cfn-ecs-tasks-stack"
-    ecs_tasks_stack_state: "absent"
+    ecs_task_stack_name: "ansible-role-cfn-ecs-task-stack"
+    ecs_task_stack_state: "absent"
   roles:
-    - ansible-role-cfn-ecs-tasks
+    - ansible-role-cfn-ecs-task

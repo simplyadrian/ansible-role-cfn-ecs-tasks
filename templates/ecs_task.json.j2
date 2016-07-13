@@ -5,12 +5,12 @@
       "Type": "AWS::ECS::TaskDefinition",
       "Properties" : {
         "ContainerDefinitions" : [
-          {% for container in ecs_tasks_container_definitions %}
+          {% for container in ecs_task_container_definitions %}
           {{ container|to_json }}{% if not loop.last %}, {% endif %}
           {% endfor %}
         ],
         "Volumes": [
-          {% for volume in ecs_tasks_volume_definitions %}
+          {% for volume in ecs_task_volume_definitions %}
           {{ volume|to_json }}{% if not loop.last %}, {% endif %}
           {% endfor %}
         ]
