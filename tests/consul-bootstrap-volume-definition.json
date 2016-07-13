@@ -1,0 +1,6 @@
+{
+        "Host": {           
+		"SourcePath": "/opt/rtc/consul"
+        },
+        "Name": "consuldata"
+}

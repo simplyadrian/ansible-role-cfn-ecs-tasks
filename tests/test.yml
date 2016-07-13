@@ -4,23 +4,18 @@
   remote_user: root
   vars:
     ecs_tasks_stack_name: "ansible-role-cfn-ecs-tasks-stack"
-    assume_role_policy_document: "{{ lookup('file','consul-bootstrap-definition.json') }}"
-  
-  pre_tasks:
-    - name: Create ecs testing cluster
-      ecs_cluster:
-        name: "{{ test_cluster }}"
-        state: has_instances
-        delay: 10
-        repeat: 10
-      register: ecs_task_output
-
+    ecs_tasks_container_definitions:
+      - "{{ lookup('file', 'consul-bootstrap-definition.json') }}"
+    ecs_tasks_volume_definitions:
+      - "{{ lookup('file', 'consul-bootstrap-volume-definition.json') }}"
   roles:
     - ansible-role-cfn-ecs-tasks
-    - ansible-role-module-cfn-lookup
-  post_tasks:
-    - cfn_lookup:
-        stack_name: "{{ecs_tasks_stack_name}}"
-        fact: "cf_output"
-        region: "{{ region|default('us-west-2') }}"
-    - debug: msg="{{ cf_output }}"
+
+- name: test cleanup
+  hosts: test
+  remote_user: root
+  vars:
+    ecs_tasks_stack_name: "ansible-role-cfn-ecs-tasks-stack"
+    ecs_tasks_stack_state: "absent"
+  roles:
+    - ansible-role-cfn-ecs-tasks
