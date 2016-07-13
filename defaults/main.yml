@@ -1,5 +1,5 @@
 ---
-# defaults file for ansible-role-cfn-ecs-tasks
-ecs_tasks_tags: {}
-ecs_tasks_volume_definitions: []
-ecs_tasks_container_definitions: []
+# defaults file for ansible-role-cfn-ecs-task
+ecs_task_tags: {}
+ecs_task_volume_definitions: []
+ecs_task_container_definitions: []

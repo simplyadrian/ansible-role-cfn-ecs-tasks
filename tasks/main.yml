@@ -5,15 +5,15 @@
 
 - name: Template the task definition stack
   template:
-    src: ecs_tasks.json.j2
-    dest: "build/ecs_task.{{ ecs_tasks_stack_name }}.json"
+    src: ecs_task.json.j2
+    dest: "build/ecs_task.{{ ecs_task_stack_name }}.json"
 
 - name: Create or remove task definition stack
   cloudformation:
-    template: "build/ecs_task.{{ ecs_tasks_stack_name }}.json"
-    stack_name: "{{ ecs_tasks_stack_name }}"
-    state: "{{ ecs_tasks_stack_state|default('present') }}"
+    template: "build/ecs_task.{{ ecs_task_stack_name }}.json"
+    stack_name: "{{ ecs_task_stack_name }}"
+    state: "{{ ecs_task_stack_state|default('present') }}"
     region: "{{ region|default('us-west-2') }}"
     security_token: "{{ lookup('env','AWS_SESSION_TOKEN')|default(omit, true) }}"
-    tags: "{{ ecs_tasks_tags }}"
-  register: ecs_tasks_cf_output
+    tags: "{{ ecs_task_tags }}"
+  register: ecs_task_cf_output
