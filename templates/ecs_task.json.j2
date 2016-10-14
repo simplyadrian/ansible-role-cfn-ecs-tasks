@@ -14,6 +14,10 @@
           {{ volume|to_json }}{% if not loop.last %}, {% endif %}
           {% endfor %}
         ]
+        {% if ecs_task_role_arn is defined %}
+        ,
+        "TaskRoleArn": "{{ ecs_task_role_arn }}"
+        {% endif %}
       }
     }
   },

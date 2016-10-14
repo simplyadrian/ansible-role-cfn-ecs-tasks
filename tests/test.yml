@@ -3,12 +3,17 @@
   hosts: test
   remote_user: root
   vars:
+    iam_role_stack_name: "ansible-role-cfn-ecs-task-test-role"
+    iam_role_managed_policy_arns: ["arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"]
     ecs_task_stack_name: "ansible-role-cfn-ecs-task-stack"
     ecs_task_container_definitions:
       - "{{ lookup('file', 'consul-bootstrap-definition.json') }}"
     ecs_task_volume_definitions:
       - "{{ lookup('file', 'consul-bootstrap-volume-definition.json') }}"
+    ecs_task_role_arn: "{{ iam_role_cf_output.stack_outputs['IAMRoleArn'] }}"
+    
   roles:
+    - ansible-role-cfn-iam-role
     - ansible-role-cfn-ecs-task
 
 - name: test cleanup
@@ -17,5 +22,8 @@
   vars:
     ecs_task_stack_name: "ansible-role-cfn-ecs-task-stack"
     ecs_task_stack_state: "absent"
+    iam_role_stack_name: "ansible-role-cfn-ecs-task-test-role"
+    iam_role_stack_state: "absent"
   roles:
     - ansible-role-cfn-ecs-task
+    - ansible-role-cfn-iam-role
