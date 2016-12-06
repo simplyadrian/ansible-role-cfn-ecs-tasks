@@ -10,7 +10,7 @@
       - "{{ lookup('file', 'consul-bootstrap-definition.json') }}"
     ecs_task_volume_definitions:
       - "{{ lookup('file', 'consul-bootstrap-volume-definition.json') }}"
-    ecs_task_role_arn: "{{ iam_role_cf_output.stack_outputs['IAMRoleArn'] }}"
+    ecs_task_role_arn: "{{ iam_role_cf_output.stack_outputs['RoleNameArn'] }}"
     
   roles:
     - ansible-role-cfn-iam-role
